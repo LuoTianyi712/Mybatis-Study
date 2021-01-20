@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.neusoft'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+subprojects{
+    apply plugin: "java-library"
+    dependencies{
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+        implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.6'
+        implementation 'mysql:mysql-connector-java:5.1.49'
+        implementation group: 'junit', name: 'junit', version: '4.12'
+    }
+}
