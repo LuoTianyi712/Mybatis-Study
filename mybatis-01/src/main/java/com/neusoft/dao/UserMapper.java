@@ -3,6 +3,7 @@ package com.neusoft.dao;
 import com.neusoft.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
 
@@ -17,6 +18,11 @@ public interface UserMapper {
 
     int updateUserById(User user);
 
+    // map使用实例
+    int addUser2(Map<String,Object> map);
+    User getUserById2(Map<String,Object> map);
+
     int deleteUserById(int id);
 
+    List<User> getUserLike(String name);
 }

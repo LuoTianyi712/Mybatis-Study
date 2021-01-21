@@ -25,4 +25,17 @@
     <delete id="deleteUserById" parameterType="int">
         delete from mybatis.user where id = #{id}
     </delete>
+
+    <!--map查询实例-->
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id, name, pwd) values (#{userid}, #{username}, #{userpwd})
+    </insert>
+    <select id="getUserById2" parameterType="map" resultType="com.neusoft.pojo.User">
+        select * from mybatis.user where id = #{UserId} and name = #{name}
+    </select>
+
+
+    <select id="getUserLike" resultType="com.neusoft.pojo.User">
+        select * from mybatis.user where name like #{name}
+    </select>
 </mapper>

@@ -4,11 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--namespace=绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.neusoft.dao.UserMapper">
-    <!--select查询语句-->
+    <!--select查询所有用户-->
     <select id="getUserList" resultType="com.neusoft.pojo.User">
         select * from mybatis.user
     </select>
 
+    <!--根据id查询用户-->
     <select id="getUserById" parameterType="int" resultType="com.neusoft.pojo.User">
         select * from mybatis.user where id = #{id}
     </select>
@@ -18,11 +19,26 @@
         insert into mybatis.user (id, name, pwd) values (#{id}, #{name}, #{pwd})
     </insert>
 
+    <!--更新用户数据-->
     <update id="updateUserById" parameterType="com.neusoft.pojo.User">
         update mybatis.user set name=#{name}, pwd=#{pwd} where id=#{id};
     </update>
 
+    <!--删除用户-->
     <delete id="deleteUserById" parameterType="int">
         delete from mybatis.user where id = #{id}
     </delete>
+
+    <!--map查询实例-->
+    <insert id="addUser2" parameterType="map">
+        insert into mybatis.user (id, name, pwd) values (#{userid}, #{username}, #{userpwd})
+    </insert>
+    <select id="getUserById2" parameterType="map" resultType="com.neusoft.pojo.User">
+        select * from mybatis.user where id = #{UserId} and name = #{name}
+    </select>
+
+    <!--模糊查询-->
+    <select id="getUserLike" resultType="com.neusoft.pojo.User">
+        select * from mybatis.user where name like "%"#{name}"%"
+    </select>
 </mapper>

@@ -5,7 +5,9 @@ import com.neusoft.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserMapperTest {
 
@@ -68,7 +70,10 @@ public class UserMapperTest {
 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
 
-        mapper.updateUserById(new User(6,"OREA","987"));
+        int res = mapper.updateUserById(new User(6, "OREA", "987"));
+        if (res > 0) {
+            System.out.println("update success!");
+        }
 
         sqlSession.commit();
         sqlSession.close();
@@ -80,10 +85,61 @@ public class UserMapperTest {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
 
         UserMapper mapper = sqlSession.getMapper(UserMapper.class);
-        mapper.deleteUserById(7);
+        int res = mapper.deleteUserById(7);
+        if (res > 0){
+            System.out.println("delete success!");
+        }
 
         sqlSession.commit();
         sqlSession.close();
 
     }
+
+    // map查询
+    @Test
+    public void addUser2() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("userid",7);
+        map.put("username","fff");
+        map.put("userpwd","2333");
+
+        int res = mapper.addUser2(map);
+        if (res > 0){
+            System.out.println("insert2 success!");
+        }
+
+        sqlSession.commit();
+        sqlSession.close();
+    }
+    @Test
+    public void getUserById2() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("UserId",3);
+
+        mapper.addUser2(map);
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void getUserLike() {
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+
+        List<User> userList = mapper.getUserLike("%J%");
+
+        for (User user : userList) {
+            System.out.println(user);
+        }
+
+        sqlSession.close();
+    }
+
 }
