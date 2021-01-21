@@ -5,12 +5,7 @@
 <!--namespace=绑定一个对应的Dao/Mapper接口-->
 <mapper namespace="com.neusoft.dao.UserMapper">
     <!--select查询所有用户-->
-    <select id="getUserList" resultType="com.neusoft.pojo.User">
+    <select id="getUserList" resultType="User">
         select * from mybatis.user
-    </select>
-
-    <!--根据id查询用户-->
-    <select id="getUserById" parameterType="int" resultType="com.neusoft.pojo.User">
-        select * from mybatis.user where id = #{id}
     </select>
 </mapper>
