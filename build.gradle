@@ -21,11 +21,11 @@ subprojects{
         implementation group: 'junit', name: 'junit', version: '4.12'
     }
 
-    processResources {
-        from('src/main/java') {
-            include '**/*.properties'
-            include '**/*.xml'
+//    processResources {
+//        from('src/main/java') {
+//            include '**/*.properties'
+//            include '**/*.xml'
 //        include '**/*'
-        }
-    }
+//        }
+//    }
 }

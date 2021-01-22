@@ -1,6 +1,5 @@
-package dao;
+package com.neusoft.dao;
 
-import com.neusoft.dao.UserMapper;
 import com.neusoft.pojo.User;
 import com.neusoft.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;

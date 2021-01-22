@@ -124,6 +124,9 @@ public class UserMapperTest {
         map.put("UserId",3);
 
         mapper.addUser2(map);
+        User user = mapper.getUserById2(map);
+
+        System.out.println(user);
 
         sqlSession.close();
     }
@@ -141,5 +144,4 @@ public class UserMapperTest {
 
         sqlSession.close();
     }
-
 }

@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'com.neusoft'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+processResources {
+    from('src/main/java') {
+        include '**/*'
+    }
+}

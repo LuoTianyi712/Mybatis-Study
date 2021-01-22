@@ -44,8 +44,6 @@
     <!--每一个mapper.xml都需要在Mybatis核心配置文件中注册！-->
     <mappers>
         <mapper resource="com/neusoft/dao/UserMapper.xml"/>
-<!--        <package name="com.neusoft.dao"/>-->
-<!--        <mapper class="com.UserMapper"/>-->
     </mappers>
 
 </configuration>
