@@ -6,10 +6,7 @@
 <configuration>
 
     <!--引入外部配置文件-->
-    <properties resource="datebase.properties">
-        <property name="username" value="root"/>
-        <property name="username" value="root"/>
-    </properties>
+    <properties resource="datebase.properties"/>
 
     <!--可以给实体类起别名-->
     <typeAliases>

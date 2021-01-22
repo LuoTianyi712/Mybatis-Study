@@ -4,15 +4,15 @@ package com.neusoft.pojo;
 public class User {
     private int id;
     private String name;
-    private String pwd;
+    private String password;
 
     public User() {
     }
 
-    public User(int id, String name, String pwd) {
+    public User(int id, String name, String password) {
         this.id = id;
         this.name = name;
-        this.pwd = pwd;
+        this.password = password;
     }
 
     public int getId() {
@@ -31,12 +31,12 @@ public class User {
         this.name = name;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", pwd='" + pwd + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }
