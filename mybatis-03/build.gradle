@@ -12,9 +12,3 @@ repositories {
 test {
     useJUnitPlatform()
 }
-
-processResources {
-    from('src/main/java') {
-        include '**/*'
-    }
-}

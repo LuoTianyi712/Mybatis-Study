@@ -19,13 +19,13 @@ subprojects{
         implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.6'
         implementation 'mysql:mysql-connector-java:5.1.49'
         implementation group: 'junit', name: 'junit', version: '4.12'
+        implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+
     }
 
-//    processResources {
-//        from('src/main/java') {
-//            include '**/*.properties'
-//            include '**/*.xml'
-//        include '**/*'
-//        }
-//    }
+    processResources {
+        from('src/main/java') {
+            include '**/*'
+        }
+    }
 }

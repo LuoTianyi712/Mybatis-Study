@@ -1,6 +1,6 @@
-com/neusoft/utils/MybatisUtils.java
- com.neusoft.utils.MybatisUtils
 com/neusoft/dao/UserMapper.java
  com.neusoft.dao.UserMapper
 com/neusoft/pojo/User.java
  com.neusoft.pojo.User
+com/neusoft/utils/MybatisUtils.java
+ com.neusoft.utils.MybatisUtils
