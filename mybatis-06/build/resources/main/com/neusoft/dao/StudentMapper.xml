@@ -19,6 +19,23 @@
     <select id="getAllTeacher" resultType="Teacher" parameterType="int">
         select * from mybatis.teacher where id = #{id};
     </select>
+<!--=================================================================================================================-->
+    <select id="getAllStudent2" resultMap="StudentRS2">
+        select s.id s_id, s.name s_name, t.id t_id, t.name t_name
+        from mybatis.student s, mybatis.teacher t
+        where s.tid = t.id;
+    </select>
 
+    <resultMap id="StudentRS2" type="Student">
+        <result property="id" column="s_id"/>
+        <result property="name" column="s_name"/>
+        <association property="teacher" javaType="Teacher">
+            <result property="id" column="t_id"/>
+            <result property="name" column="t_name"/>
+        </association>
+    </resultMap>
 
+    <select id="getAllTeacher2" resultType="Teacher">
+        select * from mybatis.teacher where id=#{id}
+    </select>
 </mapper>
