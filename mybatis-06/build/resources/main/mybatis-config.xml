@@ -9,7 +9,7 @@
     <properties resource="datebase.properties"/>
 
     <settings>
-        <setting name="logImpl" value="STDOUT_LOGGING"/>
+        <setting name="logImpl" value="LOG4J"/>
     </settings>
 
     <!--可以给实体类起别名-->

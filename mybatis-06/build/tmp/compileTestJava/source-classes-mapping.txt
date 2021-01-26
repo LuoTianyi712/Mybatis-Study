@@ -1,4 +1,2 @@
-com/neusoft/pojo/TeacherTest.java
- com.neusoft.pojo.TeacherTest
 ApplicationTest.java
  ApplicationTest
