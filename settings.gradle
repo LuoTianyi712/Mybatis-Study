@@ -5,4 +5,5 @@ include 'mybatis-03'
 include 'mybatis-04'
 include 'mybatis-05'
 include 'mybatis-06'
+include 'mybatis-07'
 

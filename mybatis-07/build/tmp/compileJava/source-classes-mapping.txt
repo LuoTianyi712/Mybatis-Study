@@ -1,0 +1,10 @@
+com/neusoft/utils/MybatisUtils.java
+ com.neusoft.utils.MybatisUtils
+com/neusoft/dao/StudentMapper.java
+ com.neusoft.dao.StudentMapper
+com/neusoft/pojo/Teacher.java
+ com.neusoft.pojo.Teacher
+com/neusoft/pojo/Student.java
+ com.neusoft.pojo.Student
+com/neusoft/dao/TeacherMapper.java
+ com.neusoft.dao.TeacherMapper
