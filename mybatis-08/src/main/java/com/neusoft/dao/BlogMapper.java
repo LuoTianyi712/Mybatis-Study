@@ -16,4 +16,8 @@ public interface BlogMapper {
 
     // 更新博客
     int updateBlogById(Map map);
+
+    // foreach查询
+    List<Blog> queryBlogForeach(Map map);
+
 }

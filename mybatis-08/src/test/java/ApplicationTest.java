@@ -5,10 +5,7 @@ import com.neusoft.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ApplicationTest {
 
@@ -114,6 +111,29 @@ public class ApplicationTest {
         }
 
 
+
+        sqlSession.close();
+    }
+
+    @Test
+    public void testForeach(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+
+        ArrayList<Integer> ids = new ArrayList();
+        ids.add(3);
+        ids.add(2);
+
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("ids",ids);
+
+        List<Blog> blogList = mapper.queryBlogForeach(map);
+
+        System.out.println("----------------------------");
+        for (Blog blog : blogList) {
+            System.out.println(blog);
+        }
+        System.out.println("----------------------------");
 
         sqlSession.close();
     }

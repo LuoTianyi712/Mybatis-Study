@@ -42,21 +42,37 @@
         </where>
     </select>
 
-<!--======================choose的标签的使用===========================================================================-->
+<!--======================set标签的使用================================================================================-->
+
+    <sql id="if-title-author">
+        <if test="title != null">
+            title = #{title},
+        </if>
+
+        <if test="author != null">
+            author = #{author},
+        </if>
+    </sql>
+
     <update id="updateBlogById" parameterType="map">
         update mybatis.blog
         <set>
-            <if test="title != null">
-                title = #{title},
-            </if>
-
-            <if test="author != null">
-                author = #{author},
-            </if>
+            <include refid="if-title-author"/>
         </set>
 
         where id = #{id}
 
     </update>
+    
+<!--======================foreach使用=================================================================================-->
+    <select id="queryBlogForeach" parameterType="map" resultType="blog">
+        select * from mybatis.blog
+        <where>
+            <foreach collection="ids" item="id" open="and (" close=")" separator="or">
+                id = #{id}
+            </foreach>
+        </where>
+    </select>
+    
     
 </mapper>
