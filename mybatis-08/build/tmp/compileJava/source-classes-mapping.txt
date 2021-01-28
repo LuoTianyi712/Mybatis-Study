@@ -2,7 +2,7 @@ com/neusoft/utils/MybatisUtils.java
  com.neusoft.utils.MybatisUtils
 com/neusoft/pojo/Blog.java
  com.neusoft.pojo.Blog
-com/neusoft/utils/IdUtils.java
- com.neusoft.utils.IdUtils
 com/neusoft/dao/BlogMapper.java
  com.neusoft.dao.BlogMapper
+com/neusoft/utils/UUIDUtils.java
+ com.neusoft.utils.UUIDUtils

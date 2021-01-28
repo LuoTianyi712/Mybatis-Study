@@ -1,6 +1,6 @@
 import com.neusoft.dao.BlogMapper;
 import com.neusoft.pojo.Blog;
-import com.neusoft.utils.IdUtils;
+import com.neusoft.utils.UUIDUtils;
 import com.neusoft.utils.MybatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
@@ -15,22 +15,22 @@ public class ApplicationTest {
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
 
-        Blog blog1 = addBlog(IdUtils.getId(), "Mybatis", "apache", new Date(), 9999);
+        Blog blog1 = addBlog(UUIDUtils.getId(), "Mybatis", "apache", new Date(), 9999);
         if (mapper.addBlog(blog1) > 0){
             System.out.println("博客创建成功：" + blog1.getTitle());
         }
 
-        Blog blog2 = addBlog(IdUtils.getId(), "JAVA", "Oracle", new Date(), 9999);
+        Blog blog2 = addBlog(UUIDUtils.getId(), "JAVA", "Oracle", new Date(), 9999);
         if (mapper.addBlog(blog2) > 0){
             System.out.println("博客创建成功：" + blog2.getTitle());
         }
 
-        Blog blog3 = addBlog(IdUtils.getId(), "Spring", "Rod", new Date(), 8888);
+        Blog blog3 = addBlog(UUIDUtils.getId(), "Spring", "Rod", new Date(), 8888);
         if (mapper.addBlog(blog3) > 0){
             System.out.println("博客创建成功：" + blog3.getTitle());
         }
 
-        Blog blog4 = addBlog(IdUtils.getId(), "微服务", "James", new Date(), 9999);
+        Blog blog4 = addBlog(UUIDUtils.getId(), "微服务", "James", new Date(), 9999);
         if (mapper.addBlog(blog4) > 0){
             System.out.println("博客创建成功：" + blog4.getTitle());
         }
