@@ -1,3 +1,209 @@
+# Mybatis
+
+[TOC]
+
+## 1、Mybatis
+
+### 1.1、简介
+
+- MyBatis 是一款优秀的**持久层框架**
+- 它支持自定义 SQL、存储过程以及高级映射。
+- MyBatis 免除了几乎所有的 JDBC 代码以及设置参数和获取结果集的工作。
+- MyBatis 可以通过简单的 XML 或注解来配置和映射原始类型、接口和 Java POJO（Plain Old Java Objects，普通老式 Java 对象）为数据库中的记录。
+- MyBatis 本是<u>apache</u>的一个开源项目<u>iBatis</u>, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。
+- 2013年11月迁移到<u>Github</u>。
+- 帮助程序员将数据存入到数据库中方便，简化的自动化框架
+
+- 优势
+  - 简单易学
+  - 灵活
+  - sql和代码的分离，提高了可维护性
+  - 提供映射标签，支持对象与数据库的orm字段关系映射
+  - 提供对象关系映射标签,支持对象关系组建维护
+  - 提供xm标签,支持编写动态sql
+
+### 1.2、如何获取
+
+GitHub官网：https://github.com/mybatis/mybatis-3
+
+官方文档：https://mybatis.org/mybatis-3/zh/index.html
+
+<u>本质是一个Maven项目</u>
+
+gradle导入jar包
+
+```java
+compile group: 'org.mybatis', name: 'mybatis', version: '3.5.6'
+```
+
+### 1.3、持久化
+
+数据持久化
+
+- 持久化就是将程序的数据在持久状态和瞬时状态转化的过程。
+- 由于内存的特性是**断电即失**，因此引出概念
+
+为什么需要持久化
+
+- 有一些对象，不能让他丢掉
+- 内存太贵了
+
+## 2、第一个Mybatis程序
+
+搭建环境 -- 导入Mybatis -- 编写代码 -- 测试
+
+### 2.1、搭建环境
+
+- 1、建立数据库，添加初始数据
+
+```sql
+CREATE DATABASE `mybatis`;
+USE `mybatis`; 
+
+CREATE TABLE `user`
+(
+    `id` INT(20) NOT NULL PRIMARY KEY, 
+    `name` VARCHAR(30) DEFAULT NULL, 
+    `pwd` VARCHAR(30) DEFAULT NULL, 
+)ENGINE=INNODB DEFAULT CHARSET=utf8; 
+
+INSERT INTO `user`(`id`,`name`,`pwd`) 
+VALUES 
+(1,'TOM','123'), 
+(2,'JERRY','321'), 
+(3,'STEAV','456'), 
+(4,'JOHN','654'), 
+(5,'SAM','789'); 
+```
+
+- 2、建立gradle项目，导入jar包
+
+```java
+implementation group: 'junit', name: 'junit', version: '4.12'
+implementation group: 'org.mybatis', name: 'mybatis', version: '3.5.6'
+implementation group: 'mysql', name: 'mysql-connector-java', version: '5.1.49'
+```
+
+### 2.2、Mybatis核心配置文件
+
+mybatis-config.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  
+  <mappers>
+    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+  </mappers>
+    
+</configuration>
+```
+
+### 2.3、Mybatis工具类
+
+```java
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+// sqlSessionFactory sqlSession
+public class MybatisUtils {
+
+    private static SqlSessionFactory sqlSessionFactory;
+
+    static {
+        String resource = "mybatis-config.xml";
+        try {
+            InputStream inputStream = Resources.getResourceAsStream(resource);
+            sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // 既然有了 SqlSessionFactory，顾名思义，我们可以从中获得 SqlSession 的实例。
+        // SqlSession 提供了在数据库执行 SQL 命令所需的所有方法。
+    }
+
+    public static SqlSession getSqlSession() {
+        return sqlSessionFactory.openSession();
+    }
+}
+```
+
+### 2.4、搭建环境
+
+dao层接口
+
+```java
+public interface UserMapper {
+    // 查询全部用户
+    List<User> getUserList();
+}
+```
+
+UserMapper.xml：由原先的UserMapperImpl转换成了现在的mapper xml配置文件
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace=绑定一个对应的Dao/Mapper接口-->
+<mapper namespace="com.neusoft.dao.UserMapper">
+    <!--select查询所有用户-->
+    <select id="getUserList" resultType="com.neusoft.pojo.User">
+        select * from mybatis.user
+    </select>
+</mapper>
+```
+
+测试
+
+```java
+    @Test
+    public void getAllUser() {
+
+        // 获得sql session对象
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+
+        // 方式1：getMapper
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        List<User> userList = userMapper.getUserList();
+
+        for (User user : userList) {
+            System.out.println(user);
+        }
+
+        // 方式2：
+//        List<User> userList1 = 
+//        sqlSession.selectList("com.neusoft.dao.UserMapper.getUserList");
+//
+//        for (User user : userList1) {
+//            System.out.println(user);
+//        }
+
+        sqlSession.close();
+    }
+```
+
 ##  3、CRUD：增删改查
 
 ### 3.1、namespace 命名空间
@@ -197,7 +403,6 @@ sqlSession.commit();
 绑定mapper则要使用【/】，             代表文件路径
 
 ```xml
-<!--每一个mapper.xml都需要在Mybatis核心配置文件中注册！-->
 <mappers>
     <mapper resource="com/neusoft/dao/UserMapper.xml"/>
 </mappers>
@@ -406,7 +611,6 @@ MyBatis 可以配置成适应多种环境
 <environments default="mysql">
     
     <environment id="mysql"></environment>
-    
     <environment id="postgresql"></environment>
     
 </environments>
@@ -508,9 +712,9 @@ Mybatis默认的事务管理器就是JDBC，连接池：POOLED
 
 ### 4.6、映射器（mappers）
 
-MapperRegistry：**核心配置文件**中注册绑定我们的Mapper.xml文件，**常用注册方式为资源文件引用注册**
+MapperRegistry：**核心配置文件**中注册绑定我们的Mapper.xml文件，**常用注册方式为==资源文件引用注册==**
 
-- 绑定方式1：资源文件引用注册
+- **绑定方式1：资源文件引用注册**
 
   ```xml
   <!-- 使用相对于类路径的资源引用 -->
@@ -2096,3 +2300,4 @@ Mapper中指定缓存
 ```
 
 目前使用Redis数据库，K,V存储
+

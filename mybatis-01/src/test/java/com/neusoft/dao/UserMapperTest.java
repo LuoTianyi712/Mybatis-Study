@@ -26,7 +26,8 @@ public class UserMapperTest {
         }
 
         // 方式2：
-//        List<User> userList1 = sqlSession.selectList("com.neusoft.dao.UserMapper.getUserList");
+//        List<User> userList1 =
+//        sqlSession.selectList("com.neusoft.dao.UserMapper.getUserList");
 //
 //        for (User user : userList1) {
 //            System.out.println(user + "***");
