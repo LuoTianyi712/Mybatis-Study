@@ -64,7 +64,7 @@ CREATE TABLE `user`
 (
     `id` INT(20) NOT NULL PRIMARY KEY, 
     `name` VARCHAR(30) DEFAULT NULL, 
-    `pwd` VARCHAR(30) DEFAULT NULL, 
+    `pwd` VARCHAR(30) DEFAULT NULL
 )ENGINE=INNODB DEFAULT CHARSET=utf8; 
 
 INSERT INTO `user`(`id`,`name`,`pwd`) 
@@ -740,7 +740,7 @@ MapperRegistry：**核心配置文件**中注册绑定我们的Mapper.xml文件�
 
   PS：接口和他的Mapper.xml配置文件**必须同名**，接口和Mapper**必须在同一个包下**，不然绑定方式2无法找到对应的文件。
 
-  ![image-20210122101907075](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210122101907075.png)
+  ![image-20210122101907075](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210122101907075.png)
 
 - 绑定方式3：扫描包进行注入绑定
 
@@ -755,7 +755,7 @@ MapperRegistry：**核心配置文件**中注册绑定我们的Mapper.xml文件�
 
 ### 4.7、作用域（Scope）和生命周期
 
-![image-20210122105821520](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210122105821520.png)
+![image-20210122105821520](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210122105821520.png)
 
 **作用域**和**生命周期类别**是至关重要的，因为错误的使用会导致非常严重的**并发问题**。
 
@@ -778,7 +778,7 @@ MapperRegistry：**核心配置文件**中注册绑定我们的Mapper.xml文件�
 - 最佳的作用域是请求或方法作用域。（局部变量，方法内创建）
 - 用完后关闭【sqlSession.close()】，避免资源占用
 
-![image-20210122110301972](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210122110301972.png)
+![image-20210122110301972](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210122110301972.png)
 
 每一个mapper，代表一个具体的业务，执行一个sql，只做了一件事
 
@@ -788,7 +788,7 @@ MapperRegistry：**核心配置文件**中注册绑定我们的Mapper.xml文件�
 
 数据库中的字段为
 
-![数据库结构](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210122111911816.png)
+![数据库结构](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210122111911816.png)
 
 实体类字段为
 
@@ -886,7 +886,7 @@ STDOUT_LOGGING 标准日志输出
 </settings>
 ```
 
-![](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210122142926389.png)
+![image-20210122142926389](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210122142926389.png)
 
 ### 6.2、LOG4J
 
@@ -942,7 +942,7 @@ log4j.logger.java.sql.PrepareStatement = DEBUG
 
 4、Log4的使用，直接测试运行
 
-![image-20210122152838880](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210122152838880.png)
+![image-20210122152838880](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210122152838880.png)
 
 简单使用
 
@@ -970,17 +970,17 @@ log4j.logger.java.sql.PrepareStatement = DEBUG
 
 在日志中出现了乱码
 
-![image-20210126111250590](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210126111250590.png)
+![image-20210126111250590](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210126111250590.png)
 
 在导入的jar包中打开mybatis的源码，找到org.apache.ibatis.io.DefaultVFS.class
 
 查看代码
 
-![image-20210126111551452](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210126111551452.png)
+![image-20210126111551452](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210126111551452.png)
 
 看到这个参数有异常，进入InputStreamReader.java中查看
 
-![image-20210126111725461](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210126111725461.png)
+![image-20210126111725461](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210126111725461.png)
 
 缺少第二个参数charset，字符编码
 
@@ -1172,7 +1172,7 @@ public void test() {
 
 相较而言，注解开发较为死板，pojo实体类的元素必须和数据库的元素同名，才能避免无法查询到数据
 
-<img src="C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125103020504.png" alt="image-20210125103020504"  />
+<img src="https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125103020504.png" alt="image-20210125103020504"  />
 
 【官方文档】
 
@@ -1184,7 +1184,7 @@ public void test() {
 
 底层：动态代理
 
-![image-20210125104929159](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125104929159.png)
+![image-20210125104929159](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125104929159.png)
 
 ### 8.3、注解实现CRUD
 
@@ -1327,31 +1327,31 @@ Lombok config system
 
 @Data注解
 
-![image-20210125155447101](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125155447101.png)
+![image-20210125155447101](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125155447101.png)
 
 @AllArgsConstructor注解
 
-![image-20210125155612503](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125155612503.png)
+![image-20210125155612503](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125155612503.png)
 
 @NoArgsConstructor注解
 
-![image-20210125155729850](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125155729850.png)
+![image-20210125155729850](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125155729850.png)
 
 @ToString
 
-![image-20210125155922992](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125155922992.png)
+![image-20210125155922992](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125155922992.png)
 
 @Getter and @Setter
 
-![image-20210125160023586](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125160023586.png)
+![image-20210125160023586](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125160023586.png)
 
 @EqualsAndHashCode
 
-![image-20210125160254624](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210125160254624.png)
+![image-20210125160254624](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210125160254624.png)
 
 ## 10、多对一处理
 
-![image-20210126144517203](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210126144517203.png)
+![image-20210126144517203](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210126144517203.png)
 
 例如：多个学生，对应一个老师
 
@@ -1548,7 +1548,7 @@ public void testStudent2() {
 
 ### 11.1、概念和环境搭建
 
-<img src="C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210126145248816.png" alt="image-20210126145248816"  />
+![image-20210126145248816](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210126145248816.png)
 
 例如：一个老师拥有多个学生
 
@@ -1690,7 +1690,7 @@ public void testTeacher2() {
     private List<Student> students
     ```
 
-    在这之中，【List<Student>】为ofType，填写Student
+    在这之中，`List<Student>`为ofType，填写Student
 
 `PS：javaType="type" 为指定的属性类型
 type -- int`
@@ -1714,7 +1714,7 @@ type -- Student`
   - 类如计算机如何将数据保存到磁盘中一样。
   - 在数据库中，存储引擎提供了一种**存储解决方案**，实现了**新增数据**、**更新数据**和**建立索引**等功能
 
-  <img src="C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210126164413407.png" alt="image-20210126164413407" style="zoom: 200%;" />
+  ![image-20210126164413407](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210126164413407.png)
 
   常用的引擎有InnoDB，MyISAM，MEMORY，Archive
 
@@ -1924,7 +1924,7 @@ test里面写条件（sql语句）
 
 例如，查询如下数据
 
-![image-20210127154146483](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210127154146483.png)
+![image-20210127154146483](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210127154146483.png)
 
 假设Title=java，author=sam，views=9999
 
@@ -2053,7 +2053,7 @@ map put的value等同于之前在mapper.xml定义的collection名称，这个val
 
 执行结果
 
-![image-20210128105440018](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128105440018.png)
+![image-20210128105440018](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128105440018.png)
 
 ### 13.8、sql片段
 
@@ -2152,23 +2152,23 @@ map put的value等同于之前在mapper.xml定义的collection名称，这个val
 
   3.查看日志输出
 
-  ![image-20210128114624318](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128114624318.png)
+  ![image-20210128114624318](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128114624318.png)
 
 缓存失效的情况：
 
 - 查询不一样的记录
 
-  ![image-20210128114951880](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128114951880.png)
+  ![image-20210128114951880](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128114951880.png)
 
 - 增删改操作，可能会改变原来的数据，所以必定会刷新缓存
 
-  ![image-20210128115826046](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128115826046.png)
+  ![image-20210128115826046](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128115826046.png)
 
 - 查询不同的Mapper.xml
 
 - 手动清除缓存【sqlSession.clearCache();】
 
-  ![image-20210128120023651](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128120023651.png)
+  ![image-20210128120023651](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128120023651.png)
 
 一级缓存默认是开启的，只在一次SqlSession中有效【创建一次SqlSession】从 **拿到连接**到**关闭连接**这段时间有效
 
@@ -2236,13 +2236,13 @@ public void test(){
 
 缓存生效状态
 
-![image-20210128130644831](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128130644831.png)
+![image-20210128130644831](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128130644831.png)
 
 在sqlSession结束的时候，会将一级缓存放入二级缓存中，只有关闭的时候才生效。
 
 相当于是SqlSession为一级缓存，Mapper（namespace）为二级缓存，二级缓存包含一级缓存
 
-PS：我们需要将实体类序列化，不然缓存无法使用，会报异常：没有序列话
+PS：我们需要将实体类序列化，不然缓存无法使用，会抛出异常：**没有序列化**
 
 ```
 Caused by: java.io.NotSerializableException: com.neusoft.pojo.User
@@ -2258,7 +2258,7 @@ Caused by: java.io.NotSerializableException: com.neusoft.pojo.User
 
 ### 14.5、缓存原理
 
-![image-20210128133759603](C:\Users\LiuFeiyu\AppData\Roaming\Typora\typora-user-images\image-20210128133759603.png)
+![image-20210128133759603](https://raw.githubusercontent.com/LuoTianyi712/Typora-pic/master/typora/image-20210128133759603.png)
 
 ### 14.6、自定义缓存-Ehcache
 
